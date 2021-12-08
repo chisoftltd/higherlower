@@ -22,7 +22,39 @@ def user_answer(guess, a_followers, b_followers):
 	else:
 		return guess == "b"
 
-print(logo)
+def game():
+	"""Game logic engine"""
+	print(logo)
+	score = 0
+	continue_game = True
+	account_a = get_account()
+	account_b = get_account()
+
+	while continue_game:
+		account_a = account_b
+		account_b = get_account()
+
+		while account_a == account_b:
+			account_b = get_account()
+
+		print(f"Compare A: {account_format(account_a)}")
+		print(vs)
+		print(f"Compare B: {account_format(account_b)}")
+
+		reply = input("Who has more followers? Type 'A' or 'B': ").lower()
+		a_follower_count = account_a["follower_count"]
+		b_follower_count = account_b["follower_count"]
+		is_correct = user_answer(reply, a_follower_count, b_follower_count)
+
+		clear()
+		print(logo)
+		if is_correct:
+			score += 1
+			print(f"You're right! Current score: {score}")
+		else:
+			continue_game = False
+			print(f"Sorry, that's wrong. Final score: {score}")
+
+game()
 
 
-print(vs)

@@ -14,6 +14,14 @@ def account_format(account):
 	country = account["country"]
 	return f"{name}, a {description}, from {country}"
 
+def user_answer(guess, a_followers, b_followers):
+	"""Checks user's guess against account followers and
+	returns True if user got it right or False if user got it wrong."""
+	if a_followers > b_followers:
+		return guess == "a"
+	else:
+		return guess == "b"
+
 print(logo)
 
 
